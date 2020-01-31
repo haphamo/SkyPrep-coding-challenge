@@ -1,3 +1,11 @@
+// Car price variables
+const basePrice = 24999
+const salesTax = 13/100
+const fixedAdminFees = 1200
+const variableAdminFees = 0.02
+const maxAddOnPriceBeforeDiscount = 8000
+const addOnDiscount = 0.5
+
 const fixture = [
 	{
 		"add_on" : "AWD Drivetrain",
@@ -9,14 +17,7 @@ const fixture = [
 	}
 ]
 
-const basePrice = 24999
-const salesTax = 13/100
-const fixedAdminFees = 1200
-const variableAdminFees = 0.02
-const maxAddOnPriceBeforeDiscount = 8000
-const addOnDiscount = 0.5
-
-const addOns = [
+const fixture2 = [
   {
     add_on: "AWD Drivetrain",
     price: 2500
@@ -52,9 +53,7 @@ const carCalculator = function(arrayData) {
     const { add_on, price } = addOn
     // this gives me the output sentence
     configs.push(add_on)
-
     addOnTotal += price
-    
   }
   
   configs.splice(configs.length - 1, 0, "and")
