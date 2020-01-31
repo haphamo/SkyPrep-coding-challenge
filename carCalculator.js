@@ -42,37 +42,36 @@ const addOns = [
     price: 2500
   }
 ]
- 
-
-             
+           
 const carCalculator = function(arrayData) {
 
   let totalCost = 0
   let addOnTotal = 0
-  let configs = ""
+  let configs = []
   for (const addOn of arrayData) {
     const { add_on, price } = addOn
     // this gives me the output sentence
-    configs += `${add_on}: $${price}, `
+    configs.push(add_on)
 
     addOnTotal += price
     
   }
-
-  listOfConfigs = `${(configs.slice(configs[0], (configs.length-2)))}.`
   
+  configs.splice(configs.length - 1, 0, "and")
+  let configSentence = (configs.join(", "))
 
   // handles the add on discount 
-  let addOnTotalWithDiscount = 0
   if(addOnTotal > maxAddOnPriceBeforeDiscount) {
     difference = addOnTotal - maxAddOnPriceBeforeDiscount
-    addOnTotalWithDiscount = difference * addOnDiscount + maxAddOnPriceBeforeDiscount
-    addOnTotal = addOnTotalWithDiscount
+    addOnTotal = difference * addOnDiscount + maxAddOnPriceBeforeDiscount
   }
+
   const fullyConfiguredVehiclePrice = basePrice + addOnTotal
-   
   
-  console.log(basePrice + addOnTotal + fixedAdminFees + (fullyConfiguredVehiclePrice * variableAdminFees) + (fullyConfiguredVehiclePrice * salesTax))
+  totalCost = (basePrice + addOnTotal + fixedAdminFees + (fullyConfiguredVehiclePrice * variableAdminFees) + (fullyConfiguredVehiclePrice * salesTax)).toFixed(2)
+  
+  let output = `The cost for the car is $${totalCost} with the following configurations ${configSentence}.`
+  return output
 }
 
-console.log(carCalculator(fixture))
+console.log(carCalculator(addOns))
