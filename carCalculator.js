@@ -44,11 +44,12 @@ const fixture2 = [
   }
 ]
            
+let totalCost = 0
+let configs = []
+let addOnTotal = 0
+
 const carCalculator = function(arrayData) {
 
-  let totalCost = 0
-  let addOnTotal = 0
-  let configs = []
   for (const addOn of arrayData) {
     const { add_on, price } = addOn
     // this gives me the output sentence
@@ -73,4 +74,4 @@ const carCalculator = function(arrayData) {
   return output
 }
 
-console.log(carCalculator(addOns))
+console.log(carCalculator(fixture2))
